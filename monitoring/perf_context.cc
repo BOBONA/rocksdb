@@ -284,6 +284,9 @@ std::string PerfContext::ToString(bool exclude_zero_counters) const {
     if (!exclude_zero_counters || (kv.second.counter > 0)) {   \
       ss << kv.second.counter << "@level" << kv.first << ", "; \
     }                                                          \
+  }                                                            \
+  if (level_to_perf_context->empty()) {                        \
+    ss << 0 << "@level0, ";                                    \
   }
     DEF_PERF_CONTEXT_LEVEL_METRICS(PERF_CONTEXT_BY_LEVEL_OUTPUT_ONE_COUNTER)
 #undef PERF_CONTEXT_BY_LEVEL_OUTPUT_ONE_COUNTER
